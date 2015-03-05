@@ -1,2 +1,4 @@
-# who_is_it
-MARVEL VS DC COMICS (Qui est-ce ?) C
+# Who is it ?
+MARVEL VS DC COMICS remake du jeu "Qui est-ce ?" version super héros !!!
+
+Langage C

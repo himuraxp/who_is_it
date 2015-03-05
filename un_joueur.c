@@ -4,6 +4,7 @@
 #include <time.h>
 #include "lire_caractere.h"
 
+void color(int couleurDuTexte,int couleurDeFond);
 
 void jouer_1()
 {
@@ -19,13 +20,13 @@ void jouer_1()
     char *hero_mystere = NULL;
     long taille_nom = 0;
 
-    //Caractéristiques = Homme, Armure, Arme, Pouvoir, Gentil.
-    int heros[6][4] = {{1, 0, 1, 0, 1},
-                       {1, 0, 0, 1, 1},
-                       {1, 1, 1, 0, 1},
-                       {0, 0, 1, 1, 1},
-                       {0, 0, 1, 0, 0},
-                       {1, 0, 1, 0, 0}};
+    //Caractéristiques = Homme, Armure, Arme, Pouvoir, Gentil, Actif.
+    int heros[6][6] = {{1, 0, 1, 0, 1, 0},
+                       {1, 0, 0, 1, 1, 0},
+                       {1, 1, 1, 0, 1, 0},
+                       {0, 0, 1, 1, 1, 0},
+                       {0, 0, 1, 0, 0, 0},
+                       {1, 0, 1, 0, 0, 0}};
 
     //Caractéristique héros pour le rand.
     int batman[5] = {1, 0, 1, 0, 1},
@@ -38,11 +39,11 @@ void jouer_1()
     int choix_critere = 0; //Questionnaire
     int erreur_crit = 0; //While
     int compteur = 0, compteur_positif = 0;
-    int liste_hero[4] = {0}; //Héros restants.
-    int search_hero[4] = {0}; //Héros Trouvé.
+    int liste_hero[5] = {0}; //Héros restants.
+    int search_hero[5] = {0}; //Héros Trouvé.
     int sexe = 0, armure = 0, arme = 0, pouvoir = 0, gentil = 0; //Caractéristique d'incrementation.
     int crit_1 = 0, crit_2 = 0, crit_3 = 0, crit_4 = 0, crit_0 = 0; //Boucle while.
-    int i = 0, a = 0, c = 0; //Boucle for i et a. c pour les different critères.
+    int i = 0, a = 0, c = 0, b[5] = {0}, d[5] = {0};//Boucle for i et a. c pour les different critères.
     //Création random.
     int h_rand = 0;
     const int MAX = 6, MIN = 1;
@@ -150,8 +151,9 @@ void jouer_1()
         }
 
         //Proposer directement un héro.
+        color(4,0);
         printf("\n6 = Qui est le HERO MYSTERE ?");
-
+        color(15,0);
         do
         {
             erreur_crit = 0;
@@ -170,6 +172,7 @@ void jouer_1()
                 scanf("%d", &search_hero[0]);
                 if (search_hero[0] == liste_hero[0])
                 {
+                    b[0] = 1;
                     printf("\nBien jouer !\n============\n");
                     compteur_positif++;
                     sexe++;
@@ -189,6 +192,7 @@ void jouer_1()
                 scanf("%d", &search_hero[1]);
                 if (search_hero[1] == liste_hero[1])
                 {
+                    b[1] = 1;
                     printf("\nBien jouer !\n============\n");
                     compteur_positif++;
                     armure++;
@@ -208,6 +212,7 @@ void jouer_1()
                 scanf("%d", &search_hero[2]);
                 if (search_hero[2] == liste_hero[2])
                 {
+                    b[2] = 1;
                     printf("\nBien jouer !\n============\n");
                     compteur_positif++;
                     arme++;
@@ -227,6 +232,7 @@ void jouer_1()
                 scanf("%d", &search_hero[3]);
                 if (search_hero[3] == liste_hero[3])
                 {
+                    b[3] = 1;
                     printf("\nBien jouer !\n============\n");
                     compteur_positif++;
                     pouvoir++;
@@ -242,10 +248,11 @@ void jouer_1()
             {
                 c = 4;
                 crit_4 = 1;
-                printf("\n---------------------\n| 1 = oui | 0 = non |\n---------------------\nEs-un SUPER-VILIAN ? ");
+                printf("\n---------------------\n| 1 = oui | 0 = non |\n---------------------\nEs-un GENTIL ? ");
                 scanf("%d", &search_hero[4]);
                 if (search_hero[4] == liste_hero[4])
                 {
+                    b[4] = 1;
                     printf("\nBien jouer !\n============\n");
                     compteur_positif++;
                     gentil++;
@@ -268,6 +275,7 @@ void jouer_1()
 
                 printf("\nQui est le HERO MYSTERE ? ");
                 hero_enter = lire_caractere();
+
                 printf("\nVous pensez que le HERO MYSTERE est %s", hero_enter);
                 if (hero_enter == hero_mystere)
                 {
@@ -284,33 +292,62 @@ void jouer_1()
                 erreur_crit = 1;
             }
         }while (erreur_crit == 1);
-        printf("\nVoici les heros repondants a ce critere:\n=======================================\n");
+
 
         //Affichage de la liste des héros restants.
+
         if (liste_hero[c] == 1)
         {
-          for (a = 0 ; a <= 5; a++)
-                {
-                    if(heros[a][c] == 1)
-                    {
-                        printf("\n%s", name_hero[a]);
-                    }
-
-                }
-        }
-        else
-        {
+            printf("\nVoici les heros repondants a ce critere:\n=======================================\n");
             for (a = 0 ; a <= 5; a++)
+            {
+                if(heros[a][c] == 1) /*&& (crit_0 == 1 || crit_2 == 1 || crit_3 == 1 || crit_4 == 1 || crit_1 == 1))*/
                 {
-                    if(heros[a][c] != 1)
+                    if(heros[a][5] == 0)
                     {
                         printf("\n%s", name_hero[a]);
                     }
+                    else if(heros[a][5] == 1)
+                    {
+                        /*printf("\nInvisible %s", name_hero[a]);*/
+                    }
+                    else
+                    {
+                        printf("\nProbleme %s", name_hero[a]);
+                    }
                 }
+                else
+                {
+                    heros[a][5] = 1;
+                }
+
+            }
+        }
+        else if(liste_hero[c] == 0)
+        {
+            printf("\nVoici les heros repondants a ce critere:\n=======================================\n");
+            for (a = 0 ; a <= 5; a++)
+            {
+                if(heros[a][5] == 1)
+                {
+                    /*printf("\nInvisible %s", name_hero[a]);*/
+                }
+                else if(heros[a][c] != 1)
+                {
+                        printf("\n%s", name_hero[a]);
+                }
+                else
+                {
+                    heros[a][5] = 1;
+                }
+            }
         }
 
     }
-        printf("\n=====================\nBravo tu as reussis !\n=====================\nLe hero etait %s \n\n", hero_mystere);
+    color(4,0);
+    printf("\n=====================\nBravo tu as reussis !\n=====================\nLe hero etait %s \n\n", hero_mystere);
+    color(15,0);
 }
+
 
 

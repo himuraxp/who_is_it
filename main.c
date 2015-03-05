@@ -3,13 +3,14 @@
 #include "un_joueur.h"
 #include "deux_joueurs.h"
 
+void color(int couleurDuTexte,int couleurDeFond);
 
 int main()
 {
     int mode = 0;
-
+    color(4,0);
     printf("=====================\n|MARVEL VS DC COMICS|\n=====================");
-
+    color(15,0);
     printf("\n\n-----------------------------------------------------------------\n| Bienvenue dans le jeu du Qui est-ce ? Version super heros !!! |\n-----------------------------------------------------------------\n");
 
     printf("\nVeuillez selectionner le mode de jeu:\n");

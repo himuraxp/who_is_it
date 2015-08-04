@@ -4,7 +4,6 @@
 #include <time.h>
 #include "lire_caractere.h"
 
-void color(int couleurDuTexte,int couleurDeFond);
 
 void jouer_1()
 {
@@ -151,9 +150,7 @@ void jouer_1()
         }
 
         //Proposer directement un héro.
-        color(4,0);
         printf("\n6 = Qui est le HERO MYSTERE ?");
-        color(15,0);
         do
         {
             erreur_crit = 0;
@@ -344,9 +341,7 @@ void jouer_1()
         }
 
     }
-    color(4,0);
     printf("\n=====================\nBravo tu as reussis !\n=====================\nLe hero etait %s \n\n", hero_mystere);
-    color(15,0);
 }
 
 

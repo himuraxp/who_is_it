@@ -3,8 +3,6 @@
 #include "un_joueur.h"
 #include "deux_joueurs.h"
 
-void color(int couleurDuTexte,int couleurDeFond);
-
 int main()
 {
     int mode = 0;

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 10:20:10 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/08/15 19:17:58 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/08/15 19:59:51 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ char	*ft_gets(void)
 	while (i < LEN)
 	{
 		read(0, &str[i], 1);
-			ft_putchar(str[i]);
 		if (str[i] == '\n')
 		{
 			break ;
@@ -61,7 +60,7 @@ int		main(void)
 
 	ft_putstr("Entez votre character : \0");
 	str = ft_gets();
-	ft_putstr("\nsaisie = ");
+	ft_putstr("saisie = ");
 	ft_putstr(str);
 	return (0);
 }
